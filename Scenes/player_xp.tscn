@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=3 uid="uid://c77faaobgjb0l"]
+
+[ext_resource type="Texture2D" uid="uid://cty6y84sscimq" path="res://Assets/UI/ValueBar_128x16.png" id="1_xbjxp"]
+[ext_resource type="Texture2D" uid="uid://cisr01b17p36g" path="res://Assets/UI/ValueBlue_120x8.png" id="2_spamq"]
+[ext_resource type="Script" path="res://Scripts/player_xp.gd" id="3_0wq83"]
+[ext_resource type="FontFile" uid="uid://f3uao3iptwlp" path="res://Assets/fonts/PixelOperator8.ttf" id="4_8bubh"]
+
+[sub_resource type="Animation" id="Animation_sev73"]
+resource_name = "Hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_62a6c"]
+resource_name = "LevelUp"
+
+[sub_resource type="Animation" id="Animation_15jn6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v7eno"]
+resource_name = "XPHide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uey4y"]
+resource_name = "XPShow"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ci14"]
+_data = {
+"Hide": SubResource("Animation_sev73"),
+"LevelUp": SubResource("Animation_62a6c"),
+"RESET": SubResource("Animation_15jn6"),
+"XPHide": SubResource("Animation_v7eno"),
+"XPShow": SubResource("Animation_uey4y")
+}
+
+[node name="PlayerXP" type="TextureProgressBar"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 30.0
+offset_right = 80.0
+offset_bottom = 71.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+value = 90.0
+texture_under = ExtResource("1_xbjxp")
+texture_progress = ExtResource("2_spamq")
+texture_progress_offset = Vector2(4, 4)
+script = ExtResource("3_0wq83")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = -9.0
+offset_right = 126.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("4_8bubh")
+theme_override_font_sizes/font_size = 8
+text = "0 / 20"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -9.0
+offset_right = 42.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("4_8bubh")
+theme_override_font_sizes/font_size = 8
+text = "EXP:"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2ci14")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

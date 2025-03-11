@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnypwwha1y5jc"]
+
+[ext_resource type="Script" path="res://Scripts/currency_counter.gd" id="1_rlrp0"]
+[ext_resource type="Texture2D" uid="uid://doo6ungdpx7sc" path="res://Assets/UI/CoinIcon_16x18.png" id="2_immhj"]
+[ext_resource type="FontFile" uid="uid://f3uao3iptwlp" path="res://Assets/fonts/PixelOperator8.ttf" id="3_h887p"]
+
+[sub_resource type="Animation" id="Animation_ef5en"]
+resource_name = "HideMoney"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_anj8n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7gdmt"]
+resource_name = "ShowMoney"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g1o3w"]
+_data = {
+"HideMoney": SubResource("Animation_ef5en"),
+"RESET": SubResource("Animation_anj8n"),
+"ShowMoney": SubResource("Animation_7gdmt")
+}
+
+[node name="CurrencyCounter" type="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rlrp0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -157.0
+offset_top = 17.0
+offset_right = -16.0
+offset_bottom = 57.0
+grow_horizontal = 0
+color = Color(0.443137, 0.443137, 0.443137, 0.611765)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -153.0
+offset_top = 17.0
+offset_right = -113.0
+offset_bottom = 57.0
+grow_horizontal = 0
+texture = ExtResource("2_immhj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_top = 26.0
+offset_right = -22.0
+offset_bottom = 49.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_h887p")
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g1o3w")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Plus" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 62.0
+offset_right = -24.0
+offset_bottom = 85.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.87888, 0.782016, 0.398504, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_h887p")
+theme_override_font_sizes/font_size = 16
+text = "+0"
+horizontal_alignment = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

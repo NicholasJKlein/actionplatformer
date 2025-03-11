@@ -1,0 +1,239 @@
+[gd_scene load_steps=25 format=3 uid="uid://dh52xt071vywf"]
+
+[ext_resource type="Texture2D" uid="uid://cuo4gmpn71wb0" path="res://Assets/sprites/slime_green.png" id="1_3cwlx"]
+[ext_resource type="Script" path="res://Scripts/slime.gd" id="1_elsxd"]
+[ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="3_hhhee"]
+[ext_resource type="PackedScene" uid="uid://b81o4hmqhrd0a" path="res://Scenes/healthbar.tscn" id="4_a4yij"]
+[ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="5_aefja"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sr7x"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac5ca"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snai1"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnnaw"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ockg"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3r06"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri7mb"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5meg"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf4fg"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn7et"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is3i8"]
+atlas = ExtResource("1_3cwlx")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_whkl0"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sr7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac5ca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snai1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnnaw")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ockg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3r06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri7mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5meg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf4fg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn7et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is3i8")
+}],
+"loop": false,
+"name": &"ReceiveHit",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4asx1"]
+radius = 83.006
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxecb"]
+size = Vector2(12, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3olwk"]
+size = Vector2(10, 11)
+
+[sub_resource type="Animation" id="Animation_ijghc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_suqkf"]
+resource_name = "RemoveHitbox"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ej7pg"]
+_data = {
+"RESET": SubResource("Animation_ijghc"),
+"RemoveHitbox": SubResource("Animation_suqkf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv3ut"]
+size = Vector2(8, 11)
+
+[node name="Slime" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 0
+script = ExtResource("1_elsxd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_whkl0")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="FollowArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
+shape = SubResource("CircleShape2D_4asx1")
+
+[node name="RayCastDownRight" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(8, -6)
+target_position = Vector2(0, 30)
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(-8, -6)
+target_position = Vector2(0, 30)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_hhhee")
+health = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_hxecb")
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(4, -16)
+
+[node name="Healthbar" parent="." instance=ExtResource("4_a4yij")]
+offset_left = -8.0
+offset_top = -18.0
+offset_right = 9.0
+offset_bottom = -16.0
+
+[node name="GotHitWait" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_aefja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_3olwk")
+
+[node name="HitStunTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ej7pg")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_wv3ut")
+
+[connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
+[connection signal="received_damage" from="Hurtbox" to="." method="_on_hurtbox_received_damage"]
+[connection signal="done_smoothing" from="Healthbar" to="." method="_on_healthbar_done_smoothing"]
+[connection signal="move_damage" from="Healthbar" to="." method="_on_healthbar_move_damage"]
+[connection signal="timeout" from="GotHitWait" to="." method="_on_got_hit_wait_timeout"]
+[connection signal="made_contact" from="Hitbox" to="." method="_on_hitbox_made_contact"]
+[connection signal="timeout" from="HitStunTimer" to="." method="_on_hit_stun_timer_timeout"]

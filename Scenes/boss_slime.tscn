@@ -1,0 +1,224 @@
+[gd_scene load_steps=25 format=3 uid="uid://cpff1j72cjyar"]
+
+[ext_resource type="Texture2D" uid="uid://ciiq1q2anj0tg" path="res://Assets/sprites/slime_purple.png" id="1_6yoyb"]
+[ext_resource type="Script" path="res://Scripts/boss_slime.gd" id="1_8grqc"]
+[ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="2_waakd"]
+[ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="3_kvytg"]
+[ext_resource type="PackedScene" uid="uid://cqxmpo12j36s3" path="res://Scenes/boss_bar.tscn" id="4_qa3nx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2vmd"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cx0y"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmmp4"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyr0f"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i5cl"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63sch"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dysso"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kupj"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huwao"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehx4a"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wa4e"]
+atlas = ExtResource("1_6yoyb")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyj4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2vmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cx0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmmp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyr0f")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i5cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63sch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dysso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kupj")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huwao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehx4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wa4e")
+}],
+"loop": false,
+"name": &"ReceiveHit",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpgyv"]
+size = Vector2(46, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nurxs"]
+size = Vector2(38, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdsco"]
+radius = 130.004
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l52lx"]
+size = Vector2(36, 45)
+
+[sub_resource type="Animation" id="Animation_vv8li"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_kym0g"]
+resource_name = "RemoveHitbox"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wo1nk"]
+_data = {
+"RESET": SubResource("Animation_vv8li"),
+"RemoveHitbox": SubResource("Animation_kym0g")
+}
+
+[node name="BossSlime" type="CharacterBody2D" groups=["Bosses"]]
+collision_layer = 0
+script = ExtResource("1_8grqc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_lyj4o")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_waakd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_bpgyv")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_kvytg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_nurxs")
+
+[node name="FollowArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
+shape = SubResource("CircleShape2D_kdsco")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BossBar" parent="CanvasLayer" instance=ExtResource("4_qa3nx")]
+
+[node name="RayCastDownRight" type="RayCast2D" parent="."]
+position = Vector2(25, -23)
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="."]
+position = Vector2(-25, -23)
+target_position = Vector2(0, 49)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_l52lx")
+
+[node name="GotHitWait" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wo1nk")
+}
+
+[node name="HitStunTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="received_damage" from="Hurtbox" to="." method="_on_hurtbox_received_damage"]
+[connection signal="made_contact" from="Hitbox" to="." method="_on_hitbox_made_contact"]
+[connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
+[connection signal="boss_move_damage" from="CanvasLayer/BossBar" to="." method="_on_boss_bar_boss_move_damage"]
+[connection signal="done_smoothing" from="CanvasLayer/BossBar" to="." method="_on_boss_bar_done_smoothing"]
+[connection signal="timeout" from="GotHitWait" to="." method="_on_got_hit_wait_timeout"]
+[connection signal="timeout" from="HitStunTimer" to="." method="_on_hit_stun_timer_timeout"]

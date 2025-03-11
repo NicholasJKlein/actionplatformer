@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=3 uid="uid://gwlds8be0mhi"]
+
+[ext_resource type="Texture2D" uid="uid://c6m3ib7a0pujy" path="res://Assets/oak_woods_v1.0/background/background_layer_1.png" id="1_jjxiq"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_wgrty"]
+[ext_resource type="Texture2D" uid="uid://db3iw33hmj7el" path="res://Assets/UI/Button_52x14.png" id="2_c4x4s"]
+[ext_resource type="FontFile" uid="uid://f3uao3iptwlp" path="res://Assets/fonts/PixelOperator8.ttf" id="3_cjikw"]
+[ext_resource type="Texture2D" uid="uid://22128pxfcb7i" path="res://Assets/UI/TitleBox_64x16.png" id="4_dmyt6"]
+[ext_resource type="Texture2D" uid="uid://cfqcm48iv7wmb" path="res://Assets/sprites/ActionPlatformerLogo.png" id="4_wi73d"]
+[ext_resource type="PackedScene" uid="uid://doi6jh3c3dqsv" path="res://Scenes/you_died_screen.tscn" id="7_ffnox"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_476ln"]
+texture = ExtResource("1_jjxiq")
+modulate_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wgrty")
+
+[node name="YouDiedScreen" parent="." instance=ExtResource("7_ffnox")]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_476ln")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PlayGame" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_c4x4s")
+texture_pressed = ExtResource("2_c4x4s")
+texture_hover = ExtResource("4_dmyt6")
+texture_disabled = ExtResource("2_c4x4s")
+texture_focused = ExtResource("2_c4x4s")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -11.0
+offset_right = 104.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cjikw")
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+
+[node name="Controls" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_c4x4s")
+texture_pressed = ExtResource("2_c4x4s")
+texture_hover = ExtResource("4_dmyt6")
+texture_disabled = ExtResource("2_c4x4s")
+texture_focused = ExtResource("2_c4x4s")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -11.0
+offset_right = 84.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cjikw")
+theme_override_font_sizes/font_size = 24
+text = "CONTROLS"
+
+[node name="Options" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_c4x4s")
+texture_pressed = ExtResource("2_c4x4s")
+texture_hover = ExtResource("4_dmyt6")
+texture_disabled = ExtResource("2_c4x4s")
+texture_focused = ExtResource("2_c4x4s")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -12.0
+offset_right = 78.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cjikw")
+theme_override_font_sizes/font_size = 24
+text = "OPTIONS"
+
+[node name="Quit" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_c4x4s")
+texture_pressed = ExtResource("2_c4x4s")
+texture_hover = ExtResource("4_dmyt6")
+texture_disabled = ExtResource("2_c4x4s")
+texture_focused = ExtResource("2_c4x4s")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Quit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -10.5
+offset_right = 107.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cjikw")
+theme_override_font_sizes/font_size = 24
+text = "EXIT"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -283.0
+offset_top = 49.0
+offset_right = 283.0
+offset_bottom = 285.0
+grow_horizontal = 2
+texture = ExtResource("4_wi73d")
+
+[connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
