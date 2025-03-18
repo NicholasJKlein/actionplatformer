@@ -85,6 +85,7 @@ Pause={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="HitsPlayer"
 2d_physics/layer_4="HitsEnemy"
+2d_physics/layer_5="PreventOverlap"
 
 [rendering]
 

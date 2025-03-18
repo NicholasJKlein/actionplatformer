@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://dh52xt071vywf"]
+[gd_scene load_steps=26 format=3 uid="uid://dh52xt071vywf"]
 
 [ext_resource type="Texture2D" uid="uid://cuo4gmpn71wb0" path="res://Assets/sprites/slime_green.png" id="1_3cwlx"]
 [ext_resource type="Script" path="res://Scripts/slime.gd" id="1_elsxd"]
 [ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="3_hhhee"]
 [ext_resource type="PackedScene" uid="uid://b81o4hmqhrd0a" path="res://Scenes/healthbar.tscn" id="4_a4yij"]
 [ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="5_aefja"]
+[ext_resource type="AudioStream" uid="uid://b2vkbmxndx7uk" path="res://Assets/sounds/hurt.wav" id="6_r1t6b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5sr7x"]
 atlas = ExtResource("1_3cwlx")
@@ -155,7 +156,8 @@ _data = {
 size = Vector2(8, 11)
 
 [node name="Slime" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 0
+collision_layer = 16
+collision_mask = 17
 script = ExtResource("1_elsxd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -228,6 +230,11 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_wv3ut")
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_r1t6b")
+volume_db = -13.157
+bus = &"SFX"
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]

@@ -1,0 +1,162 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6wu2djew6wqt"]
+
+[ext_resource type="Script" path="res://Scripts/options_menu.gd" id="1_u4s7d"]
+[ext_resource type="FontFile" uid="uid://f3uao3iptwlp" path="res://Assets/fonts/PixelOperator8.ttf" id="2_0h762"]
+[ext_resource type="Texture2D" uid="uid://c6m3ib7a0pujy" path="res://Assets/oak_woods_v1.0/background/background_layer_1.png" id="2_28jt6"]
+[ext_resource type="Script" path="res://Scripts/audio.gd" id="2_mqd6r"]
+[ext_resource type="Texture2D" uid="uid://db3iw33hmj7el" path="res://Assets/UI/Button_52x14.png" id="3_egb1s"]
+[ext_resource type="Texture2D" uid="uid://22128pxfcb7i" path="res://Assets/UI/TitleBox_64x16.png" id="4_43bsw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_potnm"]
+texture = ExtResource("2_28jt6")
+modulate_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4s7d")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_potnm")
+
+[node name="Audio" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_mqd6r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 175.0
+offset_right = 1014.0
+offset_bottom = 497.0
+scale = Vector2(0.78021, 0.78021)
+
+[node name="MasterSlide" type="HSlider" parent="Audio/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 1.0
+step = 0.05
+
+[node name="MusicSlide" type="HSlider" parent="Audio/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 1.0
+step = 0.05
+
+[node name="SFXSlide" type="HSlider" parent="Audio/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 1.0
+step = 0.05
+
+[node name="Master" type="Label" parent="."]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 171.0
+offset_right = 472.0
+offset_bottom = 194.0
+theme_override_fonts/font = ExtResource("2_0h762")
+theme_override_font_sizes/font_size = 16
+text = "Master"
+
+[node name="Music" type="Label" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 256.0
+offset_right = 470.0
+offset_bottom = 279.0
+theme_override_fonts/font = ExtResource("2_0h762")
+theme_override_font_sizes/font_size = 16
+text = "Music"
+
+[node name="SFX" type="Label" parent="."]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 342.0
+offset_right = 468.0
+offset_bottom = 365.0
+theme_override_fonts/font = ExtResource("2_0h762")
+theme_override_font_sizes/font_size = 16
+text = "SFX"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 52.0
+offset_right = 94.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_0h762")
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 445.0
+offset_right = 563.0
+offset_bottom = 485.0
+scale = Vector2(2.7276, 2.7276)
+
+[node name="ApplyButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_egb1s")
+texture_pressed = ExtResource("3_egb1s")
+texture_hover = ExtResource("4_43bsw")
+texture_disabled = ExtResource("3_egb1s")
+texture_focused = ExtResource("3_egb1s")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/ApplyButton"]
+layout_mode = 0
+offset_left = 5.86596
+offset_top = 4.76609
+offset_right = 145.866
+offset_bottom = 36.7661
+scale = Vector2(0.294851, 0.294851)
+theme_override_fonts/font = ExtResource("2_0h762")
+theme_override_font_sizes/font_size = 32
+text = "APPLY"
+
+[node name="Back" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_egb1s")
+texture_pressed = ExtResource("3_egb1s")
+texture_hover = ExtResource("4_43bsw")
+texture_disabled = ExtResource("3_egb1s")
+texture_focused = ExtResource("3_egb1s")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Back"]
+layout_mode = 0
+offset_left = 8.06567
+offset_top = 4.03015
+offset_right = 120.066
+offset_bottom = 36.0302
+scale = Vector2(0.316871, 0.316871)
+theme_override_fonts/font = ExtResource("2_0h762")
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+
+[connection signal="mouse_exited" from="Audio/VBoxContainer/MasterSlide" to="Audio" method="_on_master_slide_mouse_exited"]
+[connection signal="mouse_exited" from="Audio/VBoxContainer/MusicSlide" to="Audio" method="_on_music_slide_mouse_exited"]
+[connection signal="mouse_exited" from="Audio/VBoxContainer/SFXSlide" to="Audio" method="_on_sfx_slide_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]

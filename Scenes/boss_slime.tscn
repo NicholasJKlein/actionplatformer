@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://cpff1j72cjyar"]
+[gd_scene load_steps=26 format=3 uid="uid://cpff1j72cjyar"]
 
 [ext_resource type="Texture2D" uid="uid://ciiq1q2anj0tg" path="res://Assets/sprites/slime_purple.png" id="1_6yoyb"]
 [ext_resource type="Script" path="res://Scripts/boss_slime.gd" id="1_8grqc"]
 [ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="2_waakd"]
 [ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="3_kvytg"]
 [ext_resource type="PackedScene" uid="uid://cqxmpo12j36s3" path="res://Scenes/boss_bar.tscn" id="4_qa3nx"]
+[ext_resource type="AudioStream" uid="uid://b2vkbmxndx7uk" path="res://Assets/sounds/hurt.wav" id="6_78165"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2vmd"]
 atlas = ExtResource("1_6yoyb")
@@ -213,6 +214,11 @@ libraries = {
 [node name="HitStunTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_78165")
+volume_db = -13.157
+bus = &"SFX"
 
 [connection signal="received_damage" from="Hurtbox" to="." method="_on_hurtbox_received_damage"]
 [connection signal="made_contact" from="Hitbox" to="." method="_on_hitbox_made_contact"]
