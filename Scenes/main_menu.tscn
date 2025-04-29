@@ -195,10 +195,10 @@ stream = ExtResource("8_qrkx0")
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
