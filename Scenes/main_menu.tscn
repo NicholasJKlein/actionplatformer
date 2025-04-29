@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://db3iw33hmj7el" path="res://Assets/UI/Button_52x14.png" id="2_c4x4s"]
 [ext_resource type="FontFile" uid="uid://f3uao3iptwlp" path="res://Assets/fonts/PixelOperator8.ttf" id="3_cjikw"]
 [ext_resource type="Texture2D" uid="uid://22128pxfcb7i" path="res://Assets/UI/TitleBox_64x16.png" id="4_dmyt6"]
-[ext_resource type="Texture2D" uid="uid://cfqcm48iv7wmb" path="res://Assets/sprites/ActionPlatformerLogo.png" id="4_wi73d"]
 [ext_resource type="PackedScene" uid="uid://doi6jh3c3dqsv" path="res://Scenes/you_died_screen.tscn" id="7_ffnox"]
+[ext_resource type="Texture2D" uid="uid://bg3esrc1yas0a" path="res://Assets/sprites/ReColorLogo.png" id="7_xiyno"]
 [ext_resource type="AudioStream" uid="uid://bdmpfu3i0esry" path="res://Assets/music/Project1TitleTheme.mp3" id="8_qrkx0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_476ln"]
@@ -41,9 +41,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
-offset_top = 5.0
+offset_top = -5.0
 offset_right = 95.0
-offset_bottom = 254.0
+offset_bottom = 294.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
@@ -130,6 +130,27 @@ theme_override_fonts/font = ExtResource("3_cjikw")
 theme_override_font_sizes/font_size = 24
 text = "OPTIONS"
 
+[node name="Credits" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_c4x4s")
+texture_pressed = ExtResource("2_c4x4s")
+texture_hover = ExtResource("4_dmyt6")
+texture_disabled = ExtResource("2_c4x4s")
+texture_focused = ExtResource("2_c4x4s")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Credits"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 16.0
+offset_right = 167.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("3_cjikw")
+theme_override_font_sizes/font_size = 24
+text = "CREDITS"
+horizontal_alignment = 1
+
 [node name="Quit" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -162,21 +183,22 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -283.0
-offset_top = 49.0
-offset_right = 283.0
-offset_bottom = 285.0
+offset_left = -268.0
+offset_top = 74.0
+offset_right = 298.0
+offset_bottom = 310.0
 grow_horizontal = 2
-texture = ExtResource("4_wi73d")
+texture = ExtResource("7_xiyno")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_qrkx0")
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="VBoxContainer/PlayGame" to="." method="_on_play_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -30,3 +30,7 @@ func _on_options_pressed() -> void:
 # Quit the application.
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+# Switch scenes to the credits page
+func _on_credits_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/credits.tscn")

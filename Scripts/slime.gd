@@ -20,7 +20,7 @@ signal enemy_death(experience: int, currency: int)
 
 # Initial stats for slime enemy.
 @export var health : int = 3
-@export var SPEED : int = 40
+@export var SPEED : int = 20
 @export var experience : int = 7
 @export var currency : int = 10
 

@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://bib8c8s01t3w4"]
+
+[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_kkpwe"]
+[ext_resource type="Texture2D" uid="uid://c6m3ib7a0pujy" path="res://Assets/oak_woods_v1.0/background/background_layer_1.png" id="1_w406p"]
+[ext_resource type="FontFile" uid="uid://dkoq0kq3bmrnx" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_x1vw7"]
+[ext_resource type="FontFile" uid="uid://f3uao3iptwlp" path="res://Assets/fonts/PixelOperator8.ttf" id="3_sdsg5"]
+[ext_resource type="Texture2D" uid="uid://dk01f4svicyos" path="res://Assets/UI/LeftArrowButton_7x10.png" id="4_onnyn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp7dc"]
+texture = ExtResource("1_w406p")
+modulate_color = Color(0.339095, 0.339095, 0.339095, 1)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kkpwe")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 659.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_dp7dc")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = 61.0
+offset_right = 108.0
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_x1vw7")
+theme_override_font_sizes/font_size = 48
+text = "CREDITS"
+horizontal_alignment = 1
+
+[node name="BrackeysURL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 212.0
+offset_right = 867.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "https://brackeysgames.itch.io/brackeys-platformer-bundle"
+
+[node name="BrackeysAssets" type="Label" parent="."]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 180.0
+offset_right = 705.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "Brackeys: Level Music Theme, Boss Slime, Font"
+
+[node name="BrullovURL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 332.0
+offset_right = 546.0
+offset_bottom = 355.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "https://brullov.itch.io/oak-woods"
+
+[node name="BrullovAssets" type="Label" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 295.0
+offset_right = 465.0
+offset_bottom = 318.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "Brullov: Forest Background"
+
+[node name="KennyURL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 441.0
+offset_right = 684.0
+offset_bottom = 464.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "https://www.kenney.nl/assets/input-prompts"
+
+[node name="KennyAssets" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 406.0
+offset_right = 448.0
+offset_bottom = 429.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "Kenny: Control Menu Icons"
+
+[node name="EtahoshiURL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 565.0
+offset_right = 775.0
+offset_bottom = 588.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "https://etahoshi.itch.io/minimal-fantasy-gui-by-eta"
+
+[node name="EtahoshiAssets" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 527.0
+offset_right = 702.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+text = "Etahoshi: Button Icons, Health/XP Outline Bar, Currency Icon"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 30.0
+offset_right = 128.0
+offset_bottom = 85.0
+theme_override_fonts/font = ExtResource("3_sdsg5")
+theme_override_font_sizes/font_size = 16
+theme_override_icons/icon = ExtResource("4_onnyn")
+text = "BACK"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

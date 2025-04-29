@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnv2dpnmcyhxr"]
+
+[ext_resource type="FontFile" uid="uid://dkoq0kq3bmrnx" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="1_rjhtu"]
+[ext_resource type="Script" path="res://Scripts/win_screen.gd" id="1_vr0hx"]
+[ext_resource type="Texture2D" uid="uid://db3iw33hmj7el" path="res://Assets/UI/Button_52x14.png" id="2_p0d1c"]
+[ext_resource type="Texture2D" uid="uid://22128pxfcb7i" path="res://Assets/UI/TitleBox_64x16.png" id="3_4h2oh"]
+[ext_resource type="FontFile" uid="uid://f3uao3iptwlp" path="res://Assets/fonts/PixelOperator8.ttf" id="4_4tg2j"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vr0hx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1173.0
+offset_bottom = 674.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 165.0
+offset_right = 20.0
+offset_bottom = 188.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_rjhtu")
+theme_override_font_sizes/font_size = 64
+text = "YOU WIN!"
+horizontal_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.5
+offset_top = -363.0
+offset_right = 188.5
+offset_bottom = -239.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("2_p0d1c")
+texture_pressed = ExtResource("2_p0d1c")
+texture_hover = ExtResource("3_4h2oh")
+texture_disabled = ExtResource("2_p0d1c")
+texture_focused = ExtResource("2_p0d1c")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/TextureButton"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 44.0
+offset_right = 314.0
+offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("4_4tg2j")
+theme_override_font_sizes/font_size = 32
+text = "MAIN MENU"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Panel/TextureButton" to="." method="_on_texture_button_pressed"]

@@ -23,9 +23,9 @@ class_name Player extends CharacterBody2D
 signal death
 
 # Initial stats for the player character.
-var SPEED : float = 120.0
-var JUMP_VELOCITY : float = -350.0
-var DASH_SPEED : int = 3
+var SPEED : float = 80.0
+var JUMP_VELOCITY : float = -300.0
+var DASH_SPEED : int = 2
 var knockback : float = 10.0
 
 var MAX_HEALTH : int = 5
@@ -48,7 +48,7 @@ var smooth_heal : bool = false
 var dying : bool = false
 var dashing : bool = false
 var can_dash : bool = true
-
+var winning: bool = false
 var health : int
 
 # Initialize health, attack, XP, and make the screen transition.
@@ -63,6 +63,16 @@ func _ready() -> void:
 
 # Handles movement and player updates.
 func _physics_process(delta: float) -> void:	
+	
+	# Win game after beating boss
+	if !winning and currency >= 100:
+		winning = true
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://Scenes/WinScreen.tscn")
+	
+	if winning:
+		return
+	
 	# If in dying animation, ignore all other physics processes.
 	if dying:
 		return
