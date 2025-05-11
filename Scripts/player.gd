@@ -23,8 +23,8 @@ class_name Player extends CharacterBody2D
 signal death
 
 # Initial stats for the player character.
-var SPEED : float = 80.0
-var JUMP_VELOCITY : float = -300.0
+var SPEED : float = 90.0
+var JUMP_VELOCITY : float = -350.0
 var DASH_SPEED : int = 2
 var knockback : float = 10.0
 
